@@ -9,8 +9,10 @@ import {
   ScaleFade,
 } from '@chakra-ui/react'
 import Layout from '@/components/layout'
+import { useRouter } from 'next/router'
 
 export default function CalculationContainer(): React.ReactNode {
+  const router = useRouter()
   const [progress, setProgress] = useState<number>(0)
 
   useEffect(() => {
@@ -57,19 +59,16 @@ export default function CalculationContainer(): React.ReactNode {
             thickness="7px"
             mt={5}
           >
-            <CircularProgressLabel
-              fontSize="1.8rem"
-              fontWeight="medium"
-              _hover={{
-                fontSize: '2.4rem',
-                color: 'green',
-              }}
-            >
+            <CircularProgressLabel fontSize="1.8rem" fontWeight="medium">
               {progress}%
             </CircularProgressLabel>
           </CircularProgress>
           <ScaleFade in={progress === 100}>
-            <Button mt={5} variant="solid">
+            <Button
+              mt={5}
+              variant="solid"
+              onClick={() => router.push('/payment')}
+            >
               View Your Result
             </Button>
           </ScaleFade>
