@@ -16,7 +16,6 @@ export default function Header(): React.ReactNode {
       align="center"
       alignItems="center"
       w="100%"
-      backdropFilter="blur(3px)"
     >
       <Heading
         as="h1"

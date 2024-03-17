@@ -1,9 +1,18 @@
 import React from 'react'
-import { Button, Container, Heading, Stack, Text } from '@chakra-ui/react'
+import {
+  Button,
+  Container,
+  Heading,
+  Stack,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import Layout from '@/components/layout'
 import InstructionItem from './instruction-item'
 
 export default function StartTestContainer(): React.ReactNode {
+  const instructionColor = useColorModeValue('white', 'gray.800')
+
   return (
     <Layout>
       <Container
@@ -15,6 +24,7 @@ export default function StartTestContainer(): React.ReactNode {
         justifyContent="center"
         alignItems="center"
         shadow="xl"
+        backgroundColor={instructionColor}
       >
         <Stack align="center" justify="center" h="70vh" w="100%">
           <Heading as="h2" size="lg" fontWeight="medium">
