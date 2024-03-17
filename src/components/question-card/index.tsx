@@ -1,19 +1,37 @@
 import React from 'react'
 import Image from 'next/image'
 import { Box, Button, Flex, Grid, GridItem } from '@chakra-ui/react'
+import useIQTest from '@/hooks/useIQTest'
 
 export default function QuestionCard(): React.ReactNode {
-  const answerChoice: string[] = ['1', '2', '3', '4', '5', '6']
+  const answerChoices: string[] = ['1', '2', '3', '4', '5', '6']
+
+  const {
+    activeQuestion,
+    questions,
+    handleChoiceSelection,
+    handleNextQuestion,
+  } = useIQTest()
+
+  const selectedChoice = questions.find(
+    (question) => question.id === activeQuestion,
+  )?.selectedChoice
+
+  const onSelectedChoice = (choice: string) => {
+    handleChoiceSelection(activeQuestion, choice)
+    handleNextQuestion()
+  }
 
   return (
     <Flex mt={10} align="center" direction={{ base: 'column', lg: 'row' }}>
       <Box>
         <Image
-          src={'/assets/question-1/1_0_0.png'}
-          alt="Question 1"
+          src={`/assets/question-${activeQuestion}/${activeQuestion}_0_0.png`}
+          alt={`Question ${activeQuestion}`}
           width={450}
           height={300}
-          className="max-w-[100%]"
+          className="max-w-[100%] select-none"
+          priority
         />
       </Box>
       <Grid
@@ -21,14 +39,20 @@ export default function QuestionCard(): React.ReactNode {
         gap={3}
         mt={{ base: 10, lg: 0 }}
       >
-        {answerChoice.map((choice: string, index) => (
+        {answerChoices.map((choice: string, index) => (
           <GridItem key={index} w="100%">
-            <Button h="100%" variant="outline" outline="1px">
+            <Button
+              h="100%"
+              variant={selectedChoice === choice ? 'solid' : 'outline'}
+              outline="1px"
+              onClick={() => onSelectedChoice(choice)}
+            >
               <Image
-                src={`/assets/question-1/1_${choice}_0.png`}
+                src={`/assets/question-${activeQuestion}/${activeQuestion}_${choice}_0.png`}
                 alt={choice}
                 width={130}
                 height={130}
+                priority
               />
             </Button>
           </GridItem>

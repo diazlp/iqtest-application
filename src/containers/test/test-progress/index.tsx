@@ -1,38 +1,79 @@
-import React, { useState, useEffect } from 'react'
-import { Stack, Progress, HStack, Text, Button } from '@chakra-ui/react'
-import { FaArrowRight } from 'react-icons/fa'
+import React from 'react'
+import {
+  Stack,
+  Progress,
+  HStack,
+  Text,
+  Button,
+  useDisclosure,
+} from '@chakra-ui/react'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { Utils } from '@/lib/utils'
+import useTimer from '@/hooks/useTimer'
+import useIQTest from '@/hooks/useIQTest'
+import FinishModal from '../finish-modal'
 
 export default function TestProgress(): React.ReactNode {
-  const [timeLeft, setTimeLeft] = useState<number>(40 * 60)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { timer } = useTimer()
+  const {
+    activeQuestion,
+    handleNextQuestion,
+    handlePreviousQuestion,
+    verifyAllQuestions,
+  } = useIQTest()
 
-  useEffect(() => {
-    const timer: NodeJS.Timeout = setInterval(() => {
-      setTimeLeft((prevTime: number) => prevTime - 1)
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
+  const onFinishTest = () => {
+    verifyAllQuestions()
+    onOpen()
+  }
 
   return (
     <Stack w="100%">
-      <Progress width="100%" value={(1 / 40) * 100} size="md" />
+      <Progress width="100%" value={(activeQuestion / 40) * 100} size="md" />
       <HStack justifyContent="space-between" fontWeight="medium">
-        <Text>1/40</Text>
-        <Text>{Utils.formatTime(timeLeft)}</Text>
+        <Text>{activeQuestion}/40</Text>
+        <Text>{Utils.formatTime(timer)}</Text>
       </HStack>
       <HStack justifyContent="center">
-        <Button
-          variant="outline"
-          display="inline-flex"
-          w={{ base: '30%', lg: '15%' }}
-          alignItems="center"
-          gap={3}
-        >
-          Next
-          <FaArrowRight size={13} />
-        </Button>
+        {activeQuestion > 1 ? (
+          <Button
+            variant="outline"
+            display="inline-flex"
+            alignItems="center"
+            gap={3}
+            leftIcon={<FaArrowLeft size={13} />}
+            onClick={handlePreviousQuestion}
+          >
+            Back
+          </Button>
+        ) : null}
+        {activeQuestion < 40 ? (
+          <Button
+            variant="outline"
+            display="inline-flex"
+            alignItems="center"
+            gap={3}
+            rightIcon={<FaArrowRight size={13} />}
+            onClick={handleNextQuestion}
+          >
+            Next
+          </Button>
+        ) : null}
+        {activeQuestion === 40 ? (
+          <Button
+            variant="outline"
+            display="inline-flex"
+            alignItems="center"
+            gap={3}
+            rightIcon={<FaArrowRight size={13} />}
+            onClick={onFinishTest}
+          >
+            Finish
+          </Button>
+        ) : null}
       </HStack>
+      <FinishModal isOpen={isOpen} onClose={onClose} />
     </Stack>
   )
 }

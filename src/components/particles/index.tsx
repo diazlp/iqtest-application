@@ -15,7 +15,7 @@ export default function Particle(): React.ReactNode {
   }, [])
 
   const particlesLoaded = async (container: Container | undefined) => {
-    console.log(container)
+    // Empty block statement
   }
 
   return (

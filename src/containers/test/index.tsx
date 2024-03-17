@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from '@chakra-ui/react'
 import Layout from '@/components/layout'
 import QuestionCard from '@/components/question-card'
