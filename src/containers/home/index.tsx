@@ -20,7 +20,7 @@ export default function HomeContainer(): React.ReactNode {
         <Stack align="center" justify="center" h="70vh" w="100%">
           <Heading as="h1">Welcome to IQ Test</Heading>
           <Text fontSize="xl">
-            The world's premier Intelligence Quotient testing service
+            The world&apos;s premier Intelligence Quotient testing service
           </Text>
           <Button mt={5} onClick={() => router.push('/start-test')}>
             Take our Personal IQ Test now
