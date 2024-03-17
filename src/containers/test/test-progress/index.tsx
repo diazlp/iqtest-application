@@ -16,11 +16,15 @@ import ConfirmationModal from '../confirmation-modal'
 export default function TestProgress(): React.ReactNode {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { timer } = useTimer()
-  const { activeQuestion, handleNextQuestion, handlePreviousQuestion } =
-    useIQTest()
+  const {
+    activeQuestion,
+    verifyAllQuestions,
+    handleNextQuestion,
+    handlePreviousQuestion,
+  } = useIQTest()
 
   const onFinishTest = () => {
-    onOpen()
+    verifyAllQuestions(onOpen)
   }
 
   return (
