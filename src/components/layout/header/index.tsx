@@ -26,7 +26,7 @@ export default function Header(): React.ReactNode {
       </Heading>
 
       <Flex as="div" align="center" justify="space-between" gap={5}>
-        <Button variant="ghost">Contact</Button>
+        {/* <Button variant="ghost">Contact</Button> */}
         <ThemeButton />
       </Flex>
     </HStack>
