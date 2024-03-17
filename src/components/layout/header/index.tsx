@@ -11,7 +11,6 @@ export default function Header(): React.ReactNode {
       as="header"
       px={8}
       py={6}
-      zIndex="tooltip"
       justify="space-between"
       align="center"
       alignItems="center"

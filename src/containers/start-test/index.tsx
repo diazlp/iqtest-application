@@ -9,8 +9,10 @@ import {
 } from '@chakra-ui/react'
 import Layout from '@/components/layout'
 import InstructionItem from './instruction-item'
+import { useRouter } from 'next/router'
 
 export default function StartTestContainer(): React.ReactNode {
+  const router = useRouter()
   const instructionColor = useColorModeValue('white', 'gray.800')
 
   return (
@@ -34,11 +36,7 @@ export default function StartTestContainer(): React.ReactNode {
             Read each of the following instructions carefully
           </Text>
           <InstructionItem />
-          <Button
-            mt={5}
-            size="lg"
-            // onClick={() => router.push('/start-test')}
-          >
+          <Button mt={5} size="lg" onClick={() => router.push('/test')}>
             Start the Test
           </Button>
         </Stack>

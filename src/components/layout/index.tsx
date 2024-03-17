@@ -5,15 +5,19 @@ import Particle from '../particles'
 
 type LayoutProps = {
   children: React.ReactNode | string
+  noParticle?: boolean
 }
 
-export default function Layout({ children }: LayoutProps): React.ReactNode {
+export default function Layout({
+  children,
+  noParticle,
+}: LayoutProps): React.ReactNode {
   return (
     <Fragment>
       <Header />
       {children}
       <Footer />
-      <Particle />
+      {noParticle ? null : <Particle />}
     </Fragment>
   )
 }
