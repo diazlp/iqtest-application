@@ -11,20 +11,15 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { Utils } from '@/lib/utils'
 import useTimer from '@/hooks/useTimer'
 import useIQTest from '@/hooks/useIQTest'
-import FinishModal from '../finish-modal'
+import ConfirmationModal from '../confirmation-modal'
 
 export default function TestProgress(): React.ReactNode {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { timer } = useTimer()
-  const {
-    activeQuestion,
-    handleNextQuestion,
-    handlePreviousQuestion,
-    verifyAllQuestions,
-  } = useIQTest()
+  const { activeQuestion, handleNextQuestion, handlePreviousQuestion } =
+    useIQTest()
 
   const onFinishTest = () => {
-    verifyAllQuestions()
     onOpen()
   }
 
@@ -73,7 +68,7 @@ export default function TestProgress(): React.ReactNode {
           </Button>
         ) : null}
       </HStack>
-      <FinishModal isOpen={isOpen} onClose={onClose} />
+      <ConfirmationModal isOpen={isOpen} onClose={onClose} />
     </Stack>
   )
 }

@@ -9,16 +9,19 @@ import {
   ModalCloseButton,
   Button,
 } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
 type FinishModalProps = {
   isOpen: boolean
   onClose: () => void
 }
 
-export default function FinishModal({
+export default function ConfirmationModal({
   isOpen,
   onClose,
 }: FinishModalProps): React.ReactNode {
+  const router = useRouter()
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
@@ -32,10 +35,14 @@ export default function FinishModal({
         </ModalBody>
 
         <ModalFooter>
-          <Button variant="outline" onClick={onClose} mr={3}>
+          <Button variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme="blue" variant="solid">
+          <Button
+            colorScheme="blue"
+            variant="solid"
+            onClick={() => router.push('/calculation')}
+          >
             Finish
           </Button>
         </ModalFooter>

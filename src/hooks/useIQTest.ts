@@ -32,7 +32,7 @@ const useIQTest = () => {
     }))
   }
 
-  const verifyAllQuestions = (): void => {
+  const verifyAllQuestions = (callbackFn: () => void): void => {
     for (const question of iqTest.questions) {
       if (question.selectedChoice === undefined) {
         return setIqTest((prevQuiz) => ({
@@ -41,6 +41,8 @@ const useIQTest = () => {
         }))
       }
     }
+
+    callbackFn()
   }
 
   return {
