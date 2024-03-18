@@ -1,5 +1,9 @@
-import { useRecoilState } from 'recoil'
-import { iqTestState, type IQTestState } from '@/lib/store'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import {
+  type IQTestState,
+  iqTestState,
+  totalCorrectAnswersSelector,
+} from '@/lib/store'
 
 const useIQTest = () => {
   const [iqTest, setIqTest] = useRecoilState<IQTestState>(iqTestState)
@@ -45,6 +49,8 @@ const useIQTest = () => {
     callbackFn()
   }
 
+  const totalCorrectAnswers = useRecoilValue(totalCorrectAnswersSelector)
+
   return {
     activeQuestion: iqTest.activeQuestion,
     questions: iqTest.questions,
@@ -52,6 +58,7 @@ const useIQTest = () => {
     handlePreviousQuestion,
     handleNextQuestion,
     verifyAllQuestions,
+    totalCorrectAnswers,
   }
 }
 

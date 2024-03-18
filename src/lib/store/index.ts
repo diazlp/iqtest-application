@@ -1,4 +1,8 @@
 import { timerState } from './timerState'
-import { iqTestState, type IQTestState } from './iqTestState'
+import {
+  iqTestState,
+  type IQTestState,
+  totalCorrectAnswersSelector,
+} from './iqTestState'
 
-export { timerState, iqTestState, IQTestState }
+export { timerState, iqTestState, IQTestState, totalCorrectAnswersSelector }

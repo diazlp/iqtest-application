@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Container,
   Stack,
@@ -8,12 +8,19 @@ import {
   ListIcon,
   ListItem,
   Button,
+  Fade,
+  VStack,
 } from '@chakra-ui/react'
+import { MdCheckCircle } from 'react-icons/md'
+import useIQTest from '@/hooks/useIQTest'
 import Layout from '@/components/layout'
 import PaymentCard from '@/components/payment-card'
-import { MdCheckCircle } from 'react-icons/md'
+import Particle from '@/components/particles'
 
 export default function PaymentContainer(): React.ReactNode {
+  const { totalCorrectAnswers } = useIQTest()
+  const [showScore, setShowScore] = useState<boolean>(false)
+
   return (
     <Layout noParticle>
       <Container
@@ -79,7 +86,26 @@ export default function PaymentContainer(): React.ReactNode {
               </ListItem>
             </PaymentCard>
           </Flex>
-          <Button variant="outline">See Score Instead</Button>
+          <Button
+            variant="outline"
+            onClick={() => setShowScore(!showScore)}
+            p={5}
+          >
+            See Score Instead
+          </Button>
+          {showScore ? (
+            <Fade in={showScore}>
+              <Particle />
+              <VStack>
+                <Text fontSize="xl" fontWeight="medium">
+                  Your score is:
+                </Text>
+                <Text fontSize="3xl" fontWeight="bold">
+                  {totalCorrectAnswers}/40
+                </Text>
+              </VStack>
+            </Fade>
+          ) : null}
         </Stack>
       </Container>
     </Layout>
