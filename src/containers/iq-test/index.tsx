@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { Container } from '@chakra-ui/react'
+import React from 'react'
+import { Container, Stack } from '@chakra-ui/react'
 import Layout from '@/components/layout'
 import QuestionCard from '@/components/question-card'
 import TestProgress from './test-progress'
 
-export default function TestContainer(): React.ReactNode {
+export default function IqTestContainer(): React.ReactNode {
   return (
     <Layout noParticle>
       <Container
@@ -16,8 +16,10 @@ export default function TestContainer(): React.ReactNode {
         justifyContent="center"
         alignItems="center"
       >
-        <TestProgress />
-        <QuestionCard />
+        <Stack align="center" justify="center" h="75vh" w="100%">
+          <TestProgress />
+          <QuestionCard />
+        </Stack>
       </Container>
     </Layout>
   )

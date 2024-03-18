@@ -4,21 +4,16 @@ import {
   Stack,
   Heading,
   Text,
-  Card,
-  CardHeader,
-  CardBody,
-  List,
+  Flex,
   ListIcon,
   ListItem,
   Button,
-  useColorModeValue,
 } from '@chakra-ui/react'
 import Layout from '@/components/layout'
+import PaymentCard from '@/components/payment-card'
 import { MdCheckCircle } from 'react-icons/md'
 
 export default function PaymentContainer(): React.ReactNode {
-  const cardBodyColor = useColorModeValue('gray.50', 'gray.700')
-
   return (
     <Layout noParticle>
       <Container
@@ -29,6 +24,7 @@ export default function PaymentContainer(): React.ReactNode {
         centerContent
         justifyContent="center"
         alignItems="center"
+        my={{ base: 52, lg: 0 }}
       >
         <Stack
           align="center"
@@ -38,43 +34,52 @@ export default function PaymentContainer(): React.ReactNode {
           userSelect="none"
           cursor="default"
         >
-          <Heading>IQ Test Completee</Heading>
+          <Heading>IQ Test Complete</Heading>
           <Text fontSize="lg" color="gray.500">
-            Choose payment option. Results are instant.
+            Please choose a payment option. Results are instant.
           </Text>
-          <Card size="lg" variant="outline" mt={5}>
-            <CardHeader textAlign="center">
-              <Heading size="xl">USD $20</Heading>
-            </CardHeader>
-            <CardBody
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              gap={5}
-              backgroundColor={cardBodyColor}
-            >
-              <List spacing={2} wordBreak="break-word">
-                <ListItem>
-                  <ListIcon as={MdCheckCircle} color="green.500" />
-                  IQ Assessment
-                </ListItem>
-                <ListItem>
-                  <ListIcon as={MdCheckCircle} color="green.500" />
-                  Multiple Intelligences Report
-                </ListItem>
-                <ListItem>
-                  <ListIcon as={MdCheckCircle} color="green.500" />
-                  IQ Certificate
-                </ListItem>
-                <ListItem>
-                  <ListIcon as={MdCheckCircle} color="green.500" />
-                  Analysis of cognitive strengths/weaknesses
-                </ListItem>
-              </List>
-
-              <Button colorScheme="red">Choose Payment</Button>
-            </CardBody>
-          </Card>
+          <Flex
+            direction={{ base: 'column', lg: 'row' }}
+            justify={{ base: 'center', lg: 'initial' }}
+            align={{ base: 'center', lg: 'start' }}
+            gap={5}
+          >
+            <PaymentCard price="$5">
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                IQ Assessment
+              </ListItem>
+            </PaymentCard>
+            <PaymentCard price="$20" isPopular>
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                IQ Assessment
+              </ListItem>
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                Multiple Intelligences Report
+              </ListItem>
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                IQ Certificate
+              </ListItem>
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                Analysis of cognitive strengths/weaknesses
+              </ListItem>
+            </PaymentCard>
+            <PaymentCard price="$10">
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                IQ Assessment
+              </ListItem>
+              <ListItem>
+                <ListIcon as={MdCheckCircle} color="green.500" />
+                IQ Certificate
+              </ListItem>
+            </PaymentCard>
+          </Flex>
+          <Button variant="outline">See Score Instead</Button>
         </Stack>
       </Container>
     </Layout>

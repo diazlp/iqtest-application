@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import StartTestContainer from '@/containers/start-test'
+import InstructionContainer from '@/containers/instruction'
 
-export default function StartTestPage(): React.ReactNode {
+export default function InstructionPage(): React.ReactNode {
   return (
     <>
       <Head>
@@ -12,7 +12,7 @@ export default function StartTestPage(): React.ReactNode {
           content="The world's premier Intelligence Quotient testing service"
         />
       </Head>
-      <StartTestContainer />
+      <InstructionContainer />
     </>
   )
 }

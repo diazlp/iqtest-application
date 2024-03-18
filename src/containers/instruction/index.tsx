@@ -11,7 +11,7 @@ import Layout from '@/components/layout'
 import InstructionItem from './instruction-item'
 import { useRouter } from 'next/router'
 
-export default function StartTestContainer(): React.ReactNode {
+export default function InstructionContainer(): React.ReactNode {
   const router = useRouter()
   const instructionColor = useColorModeValue('white', 'gray.800')
 
@@ -28,7 +28,7 @@ export default function StartTestContainer(): React.ReactNode {
         shadow="xl"
         backgroundColor={instructionColor}
       >
-        <Stack align="center" justify="center" h="70vh" w="100%">
+        <Stack align="center" justify="center" h="75vh" w="100%">
           <Heading as="h2" size="lg" fontWeight="medium">
             Test Intructions
           </Heading>
@@ -36,7 +36,7 @@ export default function StartTestContainer(): React.ReactNode {
             Read each of the following instructions carefully
           </Text>
           <InstructionItem />
-          <Button mt={5} size="lg" onClick={() => router.push('/test')}>
+          <Button mt={5} size="lg" onClick={() => router.push('/iq-test')}>
             Start the Test
           </Button>
         </Stack>

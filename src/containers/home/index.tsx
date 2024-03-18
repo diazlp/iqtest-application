@@ -17,12 +17,12 @@ export default function HomeContainer(): React.ReactNode {
         justifyContent="center"
         alignItems="center"
       >
-        <Stack align="center" justify="center" h="70vh" w="100%">
+        <Stack align="center" justify="center" h="75vh" w="100%">
           <Heading as="h1">Welcome to IQ Test</Heading>
           <Text fontSize="xl">
             The world&apos;s premier Intelligence Quotient testing service
           </Text>
-          <Button mt={5} onClick={() => router.push('/start-test')}>
+          <Button mt={5} onClick={() => router.push('/instruction')}>
             Take our Personal IQ Test now
           </Button>
         </Stack>
